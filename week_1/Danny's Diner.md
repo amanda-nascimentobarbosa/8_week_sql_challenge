@@ -161,12 +161,95 @@ WITH rk_orders AS
 
 **8. What is the total items and amount spent for each member before they became a member?**
 ```SQL
-
+SELECT
+	s.customer_id,
+	COUNT(m.product_id) AS total_itens,
+	SUM(m.price) AS total_amount
+FROM sales s
+LEFT JOIN members mb
+ON s.customer_id = mb.customer_id
+LEFT JOIN menu m
+ON s.product_id = m.product_id
+WHERE s.order_date < mb.join_date
+GROUP BY s.customer_id
 ```
+| customer_id | total_itens | total_amount |
+|-------------|-------------|--------------|
+| A           | 2           | 25           |
+| B           | 3           | 40           |
 
+**9. If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?**
+```SQL
+WITH points AS
+(
+	SELECT
+		s.customer_id,
+		s.product_id,
+		m.product_name,
+		m.price,
+		CASE
+			WHEN m.product_name = 'sushi' THEN 2 * 10* m.price
+			ELSE 10 * m.price 
+		END AS points
+	FROM sales s
+	LEFT JOIN menu m
+	ON s.product_id = m.product_id
+)
+	SELECT
+		p.customer_id,
+		SUM(points) AS points
+	FROM points p
+	GROUP BY p.customer_id
+```
+| customer_id | points |
+|-------------|--------|
+| A           | 860    |
+| B           | 940    |
+| C           | 360    |
 
-
-
+**10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?**
+```SQL
+WITH dates AS 
+(
+SELECT 
+	*, 
+	DATEADD(DAY, 6, join_date) AS first_week, 
+	EOMONTH('2021-01-31') AS first_month
+FROM members
+),
+points_dist AS
+(
+SELECT 
+	d.customer_id, 
+	s.order_date, 
+	d.join_date, 
+	d.first_week, 
+	d.first_month, 
+	m.product_name, 
+	m.price,
+	SUM(CASE
+	  WHEN m.product_name = 'sushi' THEN 2 * 10 * m.price
+	  WHEN s.order_date BETWEEN d.join_date AND d.first_week THEN 2 * 10 * m.price
+	  ELSE 10 * m.price
+	  END) AS points
+FROM dates d
+JOIN sales s
+ON d.customer_id = s.customer_id
+JOIN menu m
+ON s.product_id = m.product_id
+WHERE s.order_date < d.first_month
+GROUP BY d.customer_id, s.order_date, d.join_date, d.first_week, d.first_month, m.product_name, m.price
+)
+SELECT
+	pd.customer_id,
+	SUM(pd.points) AS total_points
+FROM points_dist pd
+GROUP BY pd.customer_id
+```
+| customer_id | total_points |
+|-------------|--------------|
+| A           | 1370         |
+| B           | 820          |
 
 
 
