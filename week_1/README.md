@@ -16,6 +16,8 @@ GROUP BY customer_id
 * Use `LEFT JOIN` function to find out the price for each item;
 * Use `SUM` and `GROUP BY` to aggregate the total spent by customer.
 
+**Answer:**
+
 | customer_id | total_spent |
 | ----------- | ----------- |
 | A           | 76          |
@@ -33,6 +35,8 @@ GROUP BY customer_id
 **Comment:**
 * Use `COUNT` and `DISTINCT`to find out the number of unique visits each customer made to the restaurant;
 * Use `GROUP BY` to find out the number of visits by customer.
+
+**Answer:**
 
 | customer_id | num_visits |
 |-------------|------------|
@@ -65,6 +69,8 @@ WITH rk_orders AS(
 * After that, we filtered the CTE using `WHERE` to find out the first order of each customer;
 * And then, aggregate using `GROUP BY` by each customer and product.
 
+**Answer:**
+
 | customer_id | product_name |
 |-------------|--------------|
 | A           | curry        |
@@ -86,6 +92,8 @@ ORDER BY num_purchases DESC
 **Comment:**
 * Use the `LEFT JOIN` to merge the tables *sales* and *menu*;
 * Use `COUNT` to sum how many times the products were sold.
+
+**Answer:**
 
 | product_name | num_purchases |
 |--------------|---------------|
@@ -114,6 +122,8 @@ WITH rk_orders AS(
   **Comment:**
   * First, we `COUNT` the products and used the result to `RANK`, so we can find out how many times each client brought each item. This query was created inside the `CTE` (common table expression);
   * Then, we select the `CTE`and using `WHERE` we discovered what was the most popular item for each customer.
+
+**Answer:**
 
 | customer_id | product_name | num_purchases |
 |-------------|--------------|---------------|
@@ -151,7 +161,9 @@ WITH rk_orders AS
 * In the same query we use `LEFT JOIN` to merge the tables *sales*, *members* and *menu*, so we can  extracted the order and join dates, also the product name;
 * This query was created inside the `CTE` (common table expression);
 * Then, we select the `CTE`and using `WHERE` we discovered what was the first purchase for each customer.
- 
+
+**Answer:**
+
 | customer_id | order_date | product_id | product_name | join_date  | rk |
 |-------------|------------|------------|--------------|------------|----|
 | A           | 2021-01-07 | 2          | curry        | 2021-01-07 | 1  |
@@ -184,6 +196,8 @@ WITH rk_orders AS
 * In the `CTE`, we create the `RANK`column by order date, using the `LEFT JOIN`merge the tables *sales*, *members* and *menu*, and filter the orders before the customer became a member;
 * Then, using `WHERE`filtered the first purchase.
 
+**Answer:**
+
 | customer_id | order_date | product_id | product_name | join_date  | rk |
 |-------------|------------|------------|--------------|------------|----|
 | A           | 2021-01-01 | 1          | sushi        | 2021-01-07 | 1  |
@@ -209,6 +223,8 @@ GROUP BY s.customer_id
 * `JOIN`the tables *sales*, *members* and *menu*;
 * Using `WHERE`filter orders before the customer became a member;
 * Then, `GROUP BY`customer.
+
+**Answer:**
 
 | customer_id | total_itens | total_amount |
 |-------------|-------------|--------------|
@@ -241,6 +257,8 @@ WITH points AS
 **Comment:**
 * Use the `CTE`and create the column points by using the `CASE WHEN`each sushi ordered is equal to 2X10xprice and the other items 10xprice;
 * then, `SUM` the points of each customer.
+
+**Answer:**
 
 | customer_id | points |
 |-------------|--------|
@@ -293,6 +311,8 @@ GROUP BY pd.customer_id
 * The select `SUM`every point;
 * The customer C is not a member, this is why he's not in the answer.
 
+**Answer:**
+
 | customer_id | total_points |
 |-------------|--------------|
 | A           | 1370         |
@@ -322,6 +342,8 @@ LEFT JOIN members mb
 ```
 **Comment:**
 * Use the `CASE` to attribute the *N* for non-members and *Y* for members.
+
+**Answer:**
 
 | customer_id | order_date | product_name | price | member |
 |-------------|------------|--------------|-------|--------|
@@ -374,6 +396,8 @@ FROM cte
 **Comment:**
 * Use `CTE` to create the column member, where N is for non-members and Y for members;
 * Then, `RANK`only the orders of the members.
+
+**Answer:**
 
 | customer_id | order_date | product_name | price | member | ranking |
 |-------------|------------|--------------|-------|--------|---------|
