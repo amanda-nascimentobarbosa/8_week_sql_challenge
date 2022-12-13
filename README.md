@@ -54,6 +54,6 @@ The following questions are related creating basic data tables that Danny and hi
 Danny also requires further information about the ranking of customer products, but he purposely does not need the ranking for non-member purchases so he expects null ranking values for the records when customers are not yet part of the loyalty program.
 
 
-[Answer](8_week_sql_challenge/week_1/)
+[Answer](/week_1/)
 
 </details>
