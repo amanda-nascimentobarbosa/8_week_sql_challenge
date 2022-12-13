@@ -48,7 +48,7 @@ WITH rk_orders AS(
     RANK() OVER (PARTITION BY s.customer_id ORDER BY s.order_date) rk
   FROM sales s
   LEFT JOIN menu m
-  ON s.product_id = m.product_id
+  	ON s.product_id = m.product_id
 )
   SELECT
     rk.customer_id,
@@ -75,7 +75,7 @@ SELECT TOP 1
 	COUNT(m.product_name) AS num_purchases
 FROM sales s
 LEFT JOIN menu m
-ON s.product_id = m.product_id
+	ON s.product_id = m.product_id
 GROUP BY m.product_name
 ORDER BY num_purchases DESC
 ```
