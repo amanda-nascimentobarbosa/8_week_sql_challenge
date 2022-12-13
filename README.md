@@ -2,7 +2,17 @@
 
 This is the free 8 week SQL challenge created by Danny Ma from Data with Danny. This repositories consists all of the answer for the challenge. If you are interesting to join the challenge check out [Danny's website.](https://8weeksqlchallenge.com)
 
-## Case Study #1 - Danny's Diner
+##  Table of Contents
+
+* [Case Study #1: Danny's Diner](#case1)
+* Case Study #2: Pizza Runner
+* Case Study #3: Foodie-Fi
+* Case Study #4: Data Bank
+* Case Study #5: Data Mart
+* Case Study #6: Clique Bait
+* Case Study #8: Fresh Segments
+
+## <a name=“case1”><a/> Case Study #1 - Danny's Diner
 
 <p align="center">
   <img width="300" height="300" src="https://8weeksqlchallenge.com/images/case-study-designs/1.png">
@@ -29,7 +39,6 @@ You can inspect the entity relationship diagram and example data below.
 
 ![](week_1/folder/2.png)
 
-
 <h3>Case Study Questions</h3>
   
 1. What is the total amount each customer spent at the restaurant?
@@ -43,17 +52,14 @@ You can inspect the entity relationship diagram and example data below.
 9. If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
 10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
 
-**Bonus**
+**Bonus Questions**
 
-1. Join All The Things
+1. Join All The Things - The following questions are related creating basic data tables that Danny and his team can use to quickly derive insights without needing to join the underlying tables using SQL. Create the table with the columns: customer_id, order_date,	product_name, price and	member
 
-The following questions are related creating basic data tables that Danny and his team can use to quickly derive insights without needing to join the underlying tables using SQL. Create the table with the columns: customer_id, order_date,	product_name, price and	member
+2. Rank All The Things - Danny also requires further information about the ranking of customer products, but he purposely does not need the ranking for non-member purchases so he expects null ranking values for the records when customers are not yet part of the loyalty program.
 
-2. Rank All The Things
+<h3>Solution</h3>
 
-Danny also requires further information about the ranking of customer products, but he purposely does not need the ranking for non-member purchases so he expects null ranking values for the records when customers are not yet part of the loyalty program.
-
-
-[Answer](/week_1/)
+You can view the solution [here](/week_1/)
 
 </details>
