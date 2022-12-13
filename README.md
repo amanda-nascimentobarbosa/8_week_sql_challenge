@@ -42,6 +42,18 @@ You can inspect the entity relationship diagram and example data below.
 8. What is the total items and amount spent for each member before they became a member?
 9. If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
 10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
+
+**Bonus**
+
+1. Join All The Things
+
+The following questions are related creating basic data tables that Danny and his team can use to quickly derive insights without needing to join the underlying tables using SQL. Create the table with the columns: customer_id, order_date,	product_name, price and	member
+
+2. Rank All The Things
+
+Danny also requires further information about the ranking of customer products, but he purposely does not need the ranking for non-member purchases so he expects null ranking values for the records when customers are not yet part of the loyalty program.
 </details>
+
+[Answer](8_week_sql_challenge/week_1/)
 
 
