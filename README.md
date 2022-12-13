@@ -11,7 +11,7 @@ This is the free 8 week SQL challenge created by Danny Ma from Data with Danny. 
 * Case Study #5: Data Mart
 * Case Study #6: Clique Bait
 * Case Study #8: Fresh Segments
-* 
+ 
 ## <a name=“section”><a/> Case Study #1 - Danny's Diner
 
 <p align="center">
@@ -63,3 +63,4 @@ You can inspect the entity relationship diagram and example data below.
 You can view the solution [here](/week_1/)
 
 </details>
+## <a name=“section”><a/> Case Study #1 - Danny's Diner
