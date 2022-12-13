@@ -11,11 +11,24 @@ This is the free 8 week SQL challenge created by Danny Ma from Data with Danny. 
 <details>
   <summary><h3>Business Case</h3></summary>
   
-Danny wants to use the data to answer a few simple questions about his customers, especially about their visiting patterns, how much money they’ve spent and also which menu items are their favourite. Having this deeper connection with his customers will help him deliver a better and more personalised experience for his loyal customers.
+Danny wants to use the data to answer a few simple questions about his customers, especially about their **visiting patterns**, **how much money they’ve spent** and also **which menu items are their favourite**. Having this deeper connection with his customers will help him deliver a better and more personalised experience for his loyal customers.
 
 He plans on using these insights to help him decide whether he should expand the existing customer loyalty program - additionally he needs help to generate some basic datasets so his team can easily inspect the data without needing to use SQL.
 
 Danny has provided you with a sample of his overall customer data due to privacy issues - but he hopes that these examples are enough for you to write fully functioning SQL queries to help him answer his questions!
+
+Danny has shared with you 3 key datasets for this case study:
+
+* sales
+* menu
+* members
+
+You can inspect the entity relationship diagram and example data below.
+
+<p align="center">
+  <img width="300" height="300" src="https://user-images.githubusercontent.com/100388639/207198220-6fd27715-ab95-4f65-b6f0-d47597d4932b.png">
+</p>
+
 </details>
 
 <details>
