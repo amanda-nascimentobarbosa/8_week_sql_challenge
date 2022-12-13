@@ -8,8 +8,10 @@ This is the free 8 week SQL challenge created by Danny Ma from Data with Danny. 
   <img width="300" height="300" src="https://8weeksqlchallenge.com/images/case-study-designs/1.png">
 </p>
 
-<details>
-  <summary><h3>Business Case</h3></summary>
+<details> 
+  <summary><h3>Case Study 1 - Danny's Diner - Details</h3></summary>
+
+<h3>Business Case</h3>
   
 Danny wants to use the data to answer a few simple questions about his customers, especially about their **visiting patterns**, **how much money they’ve spent** and also **which menu items are their favourite**. Having this deeper connection with his customers will help him deliver a better and more personalised experience for his loyal customers.
 
@@ -27,10 +29,8 @@ You can inspect the entity relationship diagram and example data below.
 
 ![](week_1/folder/2.png)
 
-</details>
 
-<details>
-  <summary><h3>Case Study Questions</h3></summary>
+<h3>Case Study Questions</h3>
   
 1. What is the total amount each customer spent at the restaurant?
 2. How many days has each customer visited the restaurant?
@@ -52,8 +52,8 @@ The following questions are related creating basic data tables that Danny and hi
 2. Rank All The Things
 
 Danny also requires further information about the ranking of customer products, but he purposely does not need the ranking for non-member purchases so he expects null ranking values for the records when customers are not yet part of the loyalty program.
-</details>
+
 
 [Answer](8_week_sql_challenge/week_1/)
 
-
+</details>
