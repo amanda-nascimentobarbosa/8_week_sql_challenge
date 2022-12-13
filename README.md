@@ -4,18 +4,15 @@ This is the free 8 week SQL challenge created by Danny Ma from Data with Danny. 
 
 ##  Table of Contents
 
-* [Case Study #1: Danny's Diner](#case-study-#1-danny's-diner)
+* [Case Study #1: Danny's Diner](#section)
 * Case Study #2: Pizza Runner
 * Case Study #3: Foodie-Fi
 * Case Study #4: Data Bank
 * Case Study #5: Data Mart
 * Case Study #6: Clique Bait
 * Case Study #8: Fresh Segments
-
-[pular para baixo](#local-mais-abaixo)
-
-## Local mais abaixo
-## Case Study #1 - Danny's Diner
+* 
+## <a name=“section”><a/> Case Study #1 - Danny's Diner
 
 <p align="center">
   <img width="300" height="300" src="https://8weeksqlchallenge.com/images/case-study-designs/1.png">
