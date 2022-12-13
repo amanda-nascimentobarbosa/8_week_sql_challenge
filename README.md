@@ -25,9 +25,7 @@ Danny has shared with you 3 key datasets for this case study:
 
 You can inspect the entity relationship diagram and example data below.
 
-<p align="center">
-  <img width="300" height="300" src="https://user-images.githubusercontent.com/100388639/207198220-6fd27715-ab95-4f65-b6f0-d47597d4932b.png">
-</p>
+![](week_1/folder/2.png)
 
 </details>
 
