@@ -13,7 +13,7 @@ LEFT JOIN menu m
 GROUP BY customer_id
 ```
 **Comment:**
-* Use `LEFT JOIN` function to find out the price for each item;
+* Use `LEFT JOIN` to merge the tables *sales* and *menu* to find out the price for each item;
 * Use `SUM` and `GROUP BY` to aggregate the total spent by customer.
 
 **Answer:**
@@ -34,7 +34,7 @@ GROUP BY customer_id
 ```
 **Comment:**
 * Use `COUNT` and `DISTINCT`to find out the number of unique visits each customer made to the restaurant;
-* Use `GROUP BY` to find out the number of visits by customer.
+* Use `GROUP BY` to find out the number of visits by each customer.
 
 **Answer:**
 
@@ -65,8 +65,8 @@ WITH rk_orders AS(
   GROUP BY customer_id, product_name
 ```
 **Comment:**
-* First, create a new column rank based on order_date using `RANK` and `OVER (PARTITION BY ORDER BY)`, so we can find out the order of each item was purchased. This query was created inside the `CTE` (common table expression);
-* After that, we filtered the CTE using `WHERE` to find out the first order of each customer;
+* Inside the `CTE`, we create a new column rank based on order_date using `RANK` and `OVER (PARTITION BY ORDER BY)`, so we can find out the order of each item was purchased;
+* After that, we filtered the `CTE` using `WHERE` to find out the first order of each customer;
 * And then, aggregate using `GROUP BY` by each customer and product.
 
 **Answer:**
@@ -90,8 +90,8 @@ GROUP BY m.product_name
 ORDER BY num_purchases DESC
 ```
 **Comment:**
-* Use the `LEFT JOIN` to merge the tables *sales* and *menu*;
-* Use `COUNT` to sum how many times the products were sold.
+* Use the `LEFT JOIN` to merge the tables *sales* and *menu*, so we can have the name of each product;
+* Use `COUNT` to count how many times the products were sold.
 
 **Answer:**
 
@@ -120,7 +120,7 @@ WITH rk_orders AS(
 	WHERE rk = 1
   ```
   **Comment:**
-  * First, we `COUNT` the products and used the result to `RANK`, so we can find out how many times each client brought each item. This query was created inside the `CTE` (common table expression);
+  * Inside the `CTE`, we `COUNT` the products and used the result to `RANK`, so we can find out how many times each client brought each item.
   * Then, we select the `CTE`and using `WHERE` we discovered what was the most popular item for each customer.
 
 **Answer:**
@@ -157,9 +157,8 @@ WITH rk_orders AS
 	WHERE rk = 1
 ```
 **Comment:**
-* First, we create a `RANK`column to organize the records by the first to the last one, and using `WHERE` to filter only the order dates after the customer became a member. 
+* Inside the `CTE`, we create a `RANK`column to organize the records by the first to the last one, and using `WHERE` to filter only the order dates after the customer became a member. 
 * In the same query we use `LEFT JOIN` to merge the tables *sales*, *members* and *menu*, so we can  extracted the order and join dates, also the product name;
-* This query was created inside the `CTE` (common table expression);
 * Then, we select the `CTE`and using `WHERE` we discovered what was the first purchase for each customer.
 
 **Answer:**
@@ -193,7 +192,7 @@ WITH rk_orders AS
 	WHERE rk = 1
 ```
 **Comment:**
-* In the `CTE`, we create the `RANK`column by order date, using the `LEFT JOIN`merge the tables *sales*, *members* and *menu*, and filter the orders before the customer became a member;
+* Inside the `CTE`, we create the `RANK`column by order date, using the `LEFT JOIN`merge the tables *sales*, *members* and *menu*, and filter the orders before the customer became a member;
 * Then, using `WHERE`filtered the first purchase.
 
 **Answer:**
@@ -306,7 +305,7 @@ FROM points_dist pd
 GROUP BY pd.customer_id
 ```
 **Comment:**
-* In the first `CTE` create a column to find out the date after 7 days the customer became a member and another column for the last day of January;
+* In the first `CTE`, we create a column to find out the date after 7 days the customer became a member and another column for the last day of January;
 * The second `CTE` creates the column points where sushi is always 2x10xprice, first week of membership for any item is 2x10xprice and after that 10xprice
 * The select `SUM`every point;
 * The customer C is not a member, this is why he's not in the answer.
@@ -341,7 +340,7 @@ LEFT JOIN members mb
 	ON s.customer_id = mb.customer_id
 ```
 **Comment:**
-* Use the `CASE` to attribute the *N* for non-members and *Y* for members.
+* Use the `CASE` statment to attribute the N for non-members and Y for members.
 
 **Answer:**
 
