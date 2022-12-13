@@ -4,13 +4,16 @@
 **1. What is the total amount each customer spent at the restaurant?**
 ```SQL
 SELECT 
-	customer_id,
-	SUM(price) AS total_amount
+    customer_id,
+    SUM(price) AS total_amount
 FROM sales s
 LEFT JOIN menu m
-ON s.product_id = m.product_id
+    ON s.product_id = m.product_id
 GROUP BY customer_id
 ```
+* Use `LEFT JOIN` function to find out the price for each item;
+* Use `SUM` and `GROUP BY` to aggregate the total spent by customer.
+
 | customer_id | total_spent |
 | ----------- | ----------- |
 | A           | 76          |
@@ -25,6 +28,9 @@ SELECT
 FROM sales
 GROUP BY customer_id
 ```
+* Use `COUNT` and `DISTINCT`to find out the number of unique visits each customer made to the restaurant;
+* Use `GROUP BY` to find out the number of visits by customer.
+
 | customer_id | num_visits |
 |-------------|------------|
 | A           | 4          |
@@ -51,6 +57,10 @@ WITH rk_orders AS(
   WHERE rk = 1
   GROUP BY customer_id, product_name
 ```
+* First, create a new column rank based on order_date using `RANK` and `OVER (PARTITION BY ORDER BY)`, so we can find out the order of each item was purchased. This query was created inside the `CTE` (common table expression);
+* After that, we filtered the CTE using `WHERE` to find out the first order of each customer;
+* And then, aggregate using `GROUP BY` by each customer and product.
+
 | customer_id | product_name |
 |-------------|--------------|
 | A           | curry        |
@@ -69,6 +79,9 @@ ON s.product_id = m.product_id
 GROUP BY m.product_name
 ORDER BY num_purchases DESC
 ```
+* Use the `LEFT JOIN` to merge the tables *sales* and *menu*;
+* Use `COUNT` to sum how many times the products were sold.
+
 | product_name | num_purchases |
 |--------------|---------------|
 | ramen        | 8             |
@@ -83,7 +96,7 @@ WITH rk_orders AS(
 		RANK() OVER (PARTITION BY s.customer_id ORDER BY COUNT(m.product_name) DESC) rk
 	FROM sales s
 	LEFT JOIN menu m
-	ON s.product_id = m.product_id
+		ON s.product_id = m.product_id
 	GROUP BY s.customer_id, m.product_name
 )
 	SELECT
@@ -93,7 +106,9 @@ WITH rk_orders AS(
 	FROM rk_orders rk
 	WHERE rk = 1
   ```
-  
+  * First, we `COUNT` the products and used the result to `RANK`, so we can find out how many times each client brought each item. This query was created inside the `CTE` (common table expression);
+  * Then, we select the `CTE`and using `WHERE` we discovered what was the most popular item for each customer.
+
 | customer_id | product_name | num_purchases |
 |-------------|--------------|---------------|
 | A           | ramen        | 3             |
@@ -125,6 +140,11 @@ WITH rk_orders AS
 	FROM rk_orders rk
 	WHERE rk = 1
 ```
+* First, we create a `RANK`column to organize the records by the first to the last one, and using `WHERE` to filter only the order dates after the customer became a member. 
+* In the same query we use `LEFT JOIN` to merge the tables *sales*, *members* and *menu*, so we can  extracted the order and join dates, also the product name;
+* This query was created inside the `CTE` (common table expression);
+* Then, we select the `CTE`and using `WHERE` we discovered what was the first purchase for each customer.
+ 
 | customer_id | order_date | product_id | product_name | join_date  | rk |
 |-------------|------------|------------|--------------|------------|----|
 | A           | 2021-01-07 | 2          | curry        | 2021-01-07 | 1  |
@@ -153,6 +173,9 @@ WITH rk_orders AS
 	FROM rk_orders rk
 	WHERE rk = 1
 ```
+* In the `CTE`, we create the `RANK`column by order date, using the `LEFT JOIN`merge the tables *sales*, *members* and *menu*, and filter the orders before the customer became a member;
+* Then, using `WHERE`filtered the first purchase.
+
 | customer_id | order_date | product_id | product_name | join_date  | rk |
 |-------------|------------|------------|--------------|------------|----|
 | A           | 2021-01-01 | 1          | sushi        | 2021-01-07 | 1  |
@@ -167,12 +190,17 @@ SELECT
 	SUM(m.price) AS total_amount
 FROM sales s
 LEFT JOIN members mb
-ON s.customer_id = mb.customer_id
+	ON s.customer_id = mb.customer_id
 LEFT JOIN menu m
-ON s.product_id = m.product_id
+	ON s.product_id = m.product_id
 WHERE s.order_date < mb.join_date
 GROUP BY s.customer_id
 ```
+* `COUNT`the number of items purchased by each customer and `SUM`their prices;
+* `JOIN`the tables *sales*, *members* and *menu*;
+* Using `WHERE`filter orders before the customer became a member;
+* Then, `GROUP BY`customer.
+
 | customer_id | total_itens | total_amount |
 |-------------|-------------|--------------|
 | A           | 2           | 25           |
@@ -193,7 +221,7 @@ WITH points AS
 		END AS points
 	FROM sales s
 	LEFT JOIN menu m
-	ON s.product_id = m.product_id
+		ON s.product_id = m.product_id
 )
 	SELECT
 		p.customer_id,
@@ -201,6 +229,9 @@ WITH points AS
 	FROM points p
 	GROUP BY p.customer_id
 ```
+* Use the `CTE`and create the column points by using the `CASE``WHEN`each sushi ordered is equal to 2X10xprice and the other items 10xprice;
+* then, `SUM` the points of each customer.
+
 | customer_id | points |
 |-------------|--------|
 | A           | 860    |
@@ -246,6 +277,11 @@ SELECT
 FROM points_dist pd
 GROUP BY pd.customer_id
 ```
+* In the first `CTE` create a column to find out the date after 7 days the customer became a member and another column for the last day of January;
+* The second `CTE` creates the column points where sushi is always 2x10xprice, first week of membership for any item is 2x10xprice and after that 10xprice
+* The select `SUM`every point;
+* The customer C is not a member, this is why he's not in the answer.
+
 | customer_id | total_points |
 |-------------|--------------|
 | A           | 1370         |
