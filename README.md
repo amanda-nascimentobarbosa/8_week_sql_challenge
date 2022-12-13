@@ -4,7 +4,7 @@ This is the free 8 week SQL challenge created by Danny Ma from Data with Danny. 
 
 ##  Table of Contents
 
-* [Case Study #1: Danny's Diner](#section)
+* [Case Study #1: Danny's Diner](#https://github.com/amanda-nascimentobarbosa/8_week_sql_challenge/blob/main/README.md#-case-study-1---dannys-diner)
 * Case Study #2: Pizza Runner
 * Case Study #3: Foodie-Fi
 * Case Study #4: Data Bank
@@ -63,4 +63,4 @@ You can inspect the entity relationship diagram and example data below.
 You can view the solution [here](/week_1/)
 
 </details>
-## <a name=“section”><a/> Case Study #1 - Danny's Diner
+
