@@ -25,7 +25,7 @@ This is the free 8 week SQL challenge created by Danny Ma from Data with Danny. 
   
 Danny wants to use the data to answer a few simple questions about his customers, especially about their **visiting patterns**, **how much money they’ve spent** and also **which menu items are their favourite**. Having this deeper connection with his customers will help him deliver a better and more personalised experience for his loyal customers.
 
-He plans on using these insights to help him decide whether he should expand the existing customer loyalty program - additionally he needs help to generate some basic datasets so his team can easily inspect the data without needing to use SQL.
+He plans on using these insights **to help him decide whether he should expand the existing customer loyalty program** - additionally he needs help to generate some basic datasets so his team can easily inspect the data without needing to use SQL.
 
 Danny has provided you with a sample of his overall customer data due to privacy issues - but he hopes that these examples are enough for you to write fully functioning SQL queries to help him answer his questions!
 
@@ -60,7 +60,41 @@ You can inspect the entity relationship diagram and example data below.
 
 <h3>Solution</h3>
 
+Tool used: Microsoft SQL Server
+
+Functions:
+
+* CTE, common table expression
+* Window Functions
+* Aggregate functions — SUM, COUNT
+* Join - LEFT JOIN
+* GROUP BY Statement
+* CASE Expression
+* CREATE Database and table 
+
 You can view the solution [here](/week_1/)
 
+<h3>Insights</h3>
+
+After the analysis we can observe some insights:
+
+- About visiting patterns
+  * Customer B was the one who attended the establishment the most so far, making 6 visits;
+  * Followed by client A with four visits and client C with only two visits;
+  * Customers A and C typically order more than one item during a single visit; this may be a sign that they will be dining with company.
+  
+- How much money they’ve spent
+  * Customers A and B, who are already members, spent the most amount at the restaurant in January 2021, an average of 75.00;
+  * Customer C, who attended only 2 times, in that same month spent only 36.00;
+  * According to the points table, customer B has 940 points, followed by customer A with 860 points, and customer C with 360 points;
+  * If we consider that in the first week as a member the items purchased are worth twice the score, customer A has 1370 and B 820.
+  
+- Which menu items are their favourite
+  * Ramen is the most consumed item on the menu, so far;
+  * Curry and sushi are dishes that clients have just before joining the club and may be the deciding factor in that decision. Given that customer C, a single-ramen consumer, has not yet joined.
+  
+ - The restaurant should expand the membership
+   * After joining the membership club, customers started coming to the restaurant more often, indicating that the club has the potential to grow and encourage customer loyalty.
+  
 </details>
 
