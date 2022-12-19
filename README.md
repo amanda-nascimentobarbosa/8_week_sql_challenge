@@ -12,7 +12,7 @@ This is the free 8 week SQL challenge created by Danny Ma from Data with Danny. 
 * Case Study #6: Clique Bait
 * Case Study #8: Fresh Segments
  
-## Case Study #1 - Danny's Diner
+## <a name=“section”><a/> Case Study #1 - Danny's Diner
 
 <p align="center">
   <img width="300" height="300" src="https://8weeksqlchallenge.com/images/case-study-designs/1.png">
@@ -97,4 +97,38 @@ After the analysis we can observe some insights:
    * After joining the membership club, customers started coming to the restaurant more often, indicating that the club has the potential to grow and encourage customer loyalty.
   
 </details>
+ 
+ ## <a name=“section”><a/> Case Study #2 - Pizza Runner
 
+ <p align="center">
+  <img width="300" height="300" src="https://github.com/amanda-nascimentobarbosa/8_week_sql_challenge/blob/05dfbd630ef330eff3e9788ee46d69ed8f88fdbe/week_2/image/week_2.1.png">
+</p>
+ 
+ <details> 
+  <summary><h3>Case Study 2 - Pizza Runner - Details</h3></summary>
+
+<h3>Business Case</h3>
+  
+
+
+<h3>Case Study Questions</h3>
+  
+
+
+
+
+<h3>Solution</h3>
+
+Tool used: Microsoft SQL Server
+
+
+
+You can view the solution [here]
+
+<h3>Insights</h3>
+
+After the analysis we can observe some insights:
+
+  
+</details>
+ 
