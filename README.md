@@ -5,7 +5,7 @@ This is the free 8 week SQL challenge created by Danny Ma from Data with Danny. 
 ##  Table of Contents
 
 * [Case Study #1: Danny's Diner](https://github.com/amanda-nascimentobarbosa/8_week_sql_challenge/blob/main/README.md#-case-study-1---dannys-diner)
-* Case Study #2: Pizza Runner
+* [Case Study #2: Pizza Runner](https://github.com/amanda-nascimentobarbosa/8_week_sql_challenge/blob/main/README.md#-case-study-2---pizza-runner)
 * Case Study #3: Foodie-Fi
 * Case Study #4: Data Bank
 * Case Study #5: Data Mart
