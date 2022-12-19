@@ -12,7 +12,7 @@ This is the free 8 week SQL challenge created by Danny Ma from Data with Danny. 
 * Case Study #6: Clique Bait
 * Case Study #8: Fresh Segments
  
-## <a name=“section”><a/> Case Study #1 - Danny's Diner
+## Case Study #1 - Danny's Diner
 
 <p align="center">
   <img width="300" height="300" src="https://8weeksqlchallenge.com/images/case-study-designs/1.png">
