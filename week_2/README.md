@@ -118,13 +118,13 @@ ORDER BY number_pizzas DESC
 SELECT
 	c.customer_id,
 	SUM(CASE
-			WHEN c.exclusions <> '' OR c.extras <> '' THEN 1
-			ELSE 0
-			END) AS change,
+		WHEN c.exclusions <> '' OR c.extras <> '' THEN 1
+		ELSE 0
+		END) AS change,
 	SUM(CASE
-			WHEN c.exclusions = '' AND c.extras = '' THEN 1
-			ELSE 0
-			END) AS no_change
+		WHEN c.exclusions = '' AND c.extras = '' THEN 1
+		ELSE 0
+		END) AS no_change
 FROM customer_orders c
 LEFT JOIN runner_orders r
 	ON c.order_id = r.order_id
@@ -146,13 +146,13 @@ GROUP BY c.customer_id
 SELECT
 	c.customer_id,
 	SUM(CASE
-			WHEN c.exclusions <> '' OR c.extras <> '' THEN 1
-			ELSE 0
-			END) AS change,
+		WHEN c.exclusions <> '' OR c.extras <> '' THEN 1
+		ELSE 0
+		END) AS change,
 	SUM(CASE
-			WHEN c.exclusions = '' AND c.extras = '' THEN 1
-			ELSE 0
-			END) AS no_change
+		WHEN c.exclusions = '' AND c.extras = '' THEN 1
+		ELSE 0
+		END) AS no_change
 FROM customer_orders c
 LEFT JOIN runner_orders r
 	ON c.order_id = r.order_id
@@ -240,18 +240,18 @@ GROUP BY r.runner_id
 | 2         | 23          |
 | 3         | 10          |
 
-**3. 3. Is there any relationship between the number of pizzas and how long the order takes to prepare?**
+**3. Is there any relationship between the number of pizzas and how long the order takes to prepare?**
 ```SQL  
 WITH cte AS (
-SELECT 
-	c.order_id,
-	COUNT(c.pizza_id) AS number_pizzas,
-	DATEDIFF(SECOND, CAST(c.order_time AS DATETIME ),CAST(r.pickup_time AS DATETIME ) ) / 60% 60 AS minutos
-FROM customer_orders c
-LEFT JOIN runner_orders r
-ON c.order_id = r.order_id
-WHERE r.distance_Km != 0
-GROUP BY c.order_id, DATEDIFF(SECOND, CAST(c.order_time AS DATETIME ),CAST(r.pickup_time AS DATETIME ) ) / 60% 60
+	SELECT 
+		c.order_id,
+		COUNT(c.pizza_id) AS number_pizzas,
+		DATEDIFF(SECOND, CAST(c.order_time AS DATETIME ),CAST(r.pickup_time AS DATETIME ) ) / 60% 60 AS minutos
+	FROM customer_orders c
+	LEFT JOIN runner_orders r
+	ON c.order_id = r.order_id
+	WHERE r.distance_Km != 0
+	GROUP BY c.order_id, DATEDIFF(SECOND, CAST(c.order_time AS DATETIME ),CAST(r.pickup_time AS DATETIME ) ) / 60% 60
 )
 SELECT 
 	cte.number_pizzas,
@@ -334,7 +334,9 @@ GROUP BY r.runner_id, c.order_id, r.distance_Km, r.duration_minutes
 SELECT 
   runner_id, 
   COUNT(order_id) AS total_orders,
-  SUM(CASE WHEN distance_Km = 0 THEN 0 ELSE 1 END) AS total_order_delivered,
+  SUM(CASE 
+  	WHEN distance_Km = 0 THEN 0 
+	ELSE 1 END) AS total_order_delivered, 
   (100 * SUM(CASE WHEN distance_Km = 0 THEN 0 ELSE 1 END) / COUNT(order_id)) AS success
 FROM runner_orders
 GROUP BY runner_id
