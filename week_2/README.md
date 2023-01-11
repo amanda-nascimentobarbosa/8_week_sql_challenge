@@ -417,11 +417,11 @@ ORDER BY extra_count DESC
 ``` 
 **Answer:**
 
-| topping_name | extra_toppings_id | extra_count |   |
-|--------------|-------------------|-------------|---|
-| Bacon        | 1                 | 4           |   |
-| Cheese       | 4                 | 1           |   |
-| Chicken      | 5                 | 1           |   |
+| topping_name | extra_toppings_id | extra_count |
+|--------------|-------------------|-------------|
+| Bacon        | 1                 | 4           |
+| Cheese       | 4                 | 1           |
+| Chicken      | 5                 | 1           |
 
 **3. What was the most common exclusion?**
 ```SQL  
@@ -458,8 +458,8 @@ ORDER BY exclusion_count DESC
 ``` 
 **Answer:**
 
-| topping_name | exclusion_toppings_id | exclusion_count |   |
-|--------------|-----------------------|-----------------|---|
-| Cheese       | 4                     | 4               |   |
-| Mushrooms    | 6                     | 1               |   |
-| BBQ Sauce    | 2                     | 1               |   |
+| topping_name | exclusion_toppings_id | exclusion_count |
+|--------------|-----------------------|-----------------|
+| Cheese       | 4                     | 4               |
+| Mushrooms    | 6                     | 1               |
+| BBQ Sauce    | 2                     | 1               |
