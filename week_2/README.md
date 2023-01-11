@@ -422,3 +422,44 @@ ORDER BY extra_count DESC
 | Bacon        | 1                 | 4           |   |
 | Cheese       | 4                 | 1           |   |
 | Chicken      | 5                 | 1           |   |
+
+**3. What was the most common exclusion?**
+```SQL  
+WITH exclusion AS(
+SELECT
+	pizza_id,
+	SUBSTRING(exclusions, 1, 1) AS exclusion_2,
+	SUBSTRING(exclusions, 3, 2) AS exclusion_3
+FROM
+	customer_orders c
+),
+exclusion_count AS
+(
+SELECT  --seleção sobre o resultado do union
+	colunas AS exclusion_toppings_id,
+    COUNT(colunas) AS exclusion_count
+FROM
+    (SELECT LOWER(exclusion_2) AS COLUNAS FROM exclusion
+     UNION ALL
+     SELECT LOWER(exclusion_3) AS COLUNAS FROM exclusion
+    ) nomeDoSelect --necessário nomear o union para funcinonar
+GROUP BY
+    colunas
+HAVING COUNT(colunas) > 0 AND colunas != '' --excluindo células vazias
+)
+SELECT
+	topping_name,
+	exclusion_toppings_id,
+	exclusion_count
+FROM exclusion_count ec
+LEFT JOIN pizza_toppings pt
+	ON ec.exclusion_toppings_id = pt.topping_id
+ORDER BY exclusion_count DESC
+``` 
+**Answer:**
+
+| topping_name | exclusion_toppings_id | exclusion_count |   |
+|--------------|-----------------------|-----------------|---|
+| Cheese       | 4                     | 4               |   |
+| Mushrooms    | 6                     | 1               |   |
+| BBQ Sauce    | 2                     | 1               |   |
