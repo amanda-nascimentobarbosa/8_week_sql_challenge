@@ -349,3 +349,76 @@ GROUP BY runner_id
 | 2         | 4            | 3                     | 75      |
 | 3         | 2            | 1                     | 50      |
 
+
+<H3>C. Ingredient Optimisation</H3>
+
+**1. What are the standard ingredients for each pizza?**
+```SQL  
+SELECT
+	pn.pizza_name,
+	pt.topping_name
+FROM pizza_recipes pr
+LEFT JOIN pizza_toppings pt
+	ON pr.toppings = pt.topping_id
+LEFT JOIN pizza_names pn
+	ON pr.pizza_id = pn.pizza_id
+``` 
+**Answer:**
+
+| pizza_name | topping_name |
+|------------|--------------|
+| Meatlovers | Bacon        |
+| Meatlovers | BBQ Sauce    |
+| Meatlovers | Beef         |
+| Meatlovers | Cheese       |
+| Meatlovers | Chicken      |
+| Meatlovers | Mushrooms    |
+| Meatlovers | Pepperoni    |
+| Meatlovers | Salami       |
+| Vegetarian | Cheese       |
+| Vegetarian | Mushrooms    |
+| Vegetarian | Onions       |
+| Vegetarian | Peppers      |
+| Vegetarian | Tomatoes     |
+| Vegetarian | Tomato Sauce |
+
+**2. What was the most commonly added extra?**
+```SQL  
+WITH extras AS(
+SELECT
+	pizza_id,
+	SUBSTRING(extras, 1, 1) AS extras_2,
+	SUBSTRING(extras, 3, 2) AS extras_3
+FROM
+	customer_orders c
+),
+extras_count AS
+(
+SELECT  --seleção sobre o resultado do union
+	colunas AS extra_toppings_id,
+    COUNT(colunas) AS extra_count
+FROM
+    (SELECT LOWER(extras_2) AS COLUNAS FROM extras
+     UNION ALL
+     SELECT LOWER(extras_3) AS COLUNAS FROM extras
+    ) nomeDoSelect --necessário nomear o union para funcinonar
+GROUP BY
+    colunas
+HAVING COUNT(colunas) > 0 AND colunas != '' --excluindo células vazias
+)
+SELECT
+	topping_name,
+	extra_toppings_id,
+	extra_count
+FROM extras_count ec
+LEFT JOIN pizza_toppings pt
+	ON ec.extra_toppings_id = pt.topping_id
+ORDER BY extra_count DESC
+``` 
+**Answer:**
+
+| topping_name | extra_toppings_id | extra_count |   |
+|--------------|-------------------|-------------|---|
+| Bacon        | 1                 | 4           |   |
+| Cheese       | 4                 | 1           |   |
+| Chicken      | 5                 | 1           |   |
