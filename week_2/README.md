@@ -32,3 +32,5 @@ This case study has LOTS of questions - they are broken up by area of focus, cli
 * Pricing and Ratings
 * Bonus DML Challenges (DML = Data Manipulation Language)
 
+
+
