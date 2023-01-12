@@ -1,7 +1,5 @@
 #  Case Study #1: Danny's Diner
 
-## Questions
-
 **1. What is the total amount each customer spent at the restaurant?**
 ```SQL
 SELECT 
@@ -16,7 +14,7 @@ GROUP BY customer_id
 * Use `LEFT JOIN` to merge the tables *sales* and *menu* to find out the price for each item;
 * Use `SUM` and `GROUP BY` to aggregate the total spent by customer.
 
-**Answer:**
+**Result:**
 
 | customer_id | total_spent |
 | ----------- | ----------- |
@@ -36,7 +34,7 @@ GROUP BY customer_id
 * Use `COUNT` and `DISTINCT`to find out the number of unique visits each customer made to the restaurant;
 * Use `GROUP BY` to find out the number of visits by each customer.
 
-**Answer:**
+**Result:**
 
 | customer_id | num_visits |
 |-------------|------------|
@@ -69,7 +67,7 @@ WITH rk_orders AS(
 * After that, we filtered the `CTE` using `WHERE` to find out the first order of each customer;
 * And then, aggregate using `GROUP BY` by each customer and product.
 
-**Answer:**
+**Result:**
 
 | customer_id | product_name |
 |-------------|--------------|
@@ -93,7 +91,7 @@ ORDER BY num_purchases DESC
 * Use the `LEFT JOIN` to merge the tables *sales* and *menu*, so we can have the name of each product;
 * Use `COUNT` to count how many times the products were sold.
 
-**Answer:**
+**Result:**
 
 | product_name | num_purchases |
 |--------------|---------------|
@@ -123,7 +121,7 @@ WITH rk_orders AS(
   * Inside the `CTE`, we `COUNT` the products and used the result to `RANK`, so we can find out how many times each client brought each item.
   * Then, we select the `CTE`and using `WHERE` we discovered what was the most popular item for each customer.
 
-**Answer:**
+**Result:**
 
 | customer_id | product_name | num_purchases |
 |-------------|--------------|---------------|
@@ -161,7 +159,7 @@ WITH rk_orders AS
 * In the same query we use `LEFT JOIN` to merge the tables *sales*, *members* and *menu*, so we can  extracted the order and join dates, also the product name;
 * Then, we select the `CTE`and using `WHERE` we discovered what was the first purchase for each customer.
 
-**Answer:**
+**Result:**
 
 | customer_id | order_date | product_id | product_name | join_date  | rk |
 |-------------|------------|------------|--------------|------------|----|
@@ -195,7 +193,7 @@ WITH rk_orders AS
 * Inside the `CTE`, we create the `RANK`column by order date, using the `LEFT JOIN`merge the tables *sales*, *members* and *menu*, and filter the orders before the customer became a member;
 * Then, using `WHERE`filtered the first purchase.
 
-**Answer:**
+**Result:**
 
 | customer_id | order_date | product_id | product_name | join_date  | rk |
 |-------------|------------|------------|--------------|------------|----|
@@ -223,7 +221,7 @@ GROUP BY s.customer_id
 * Using `WHERE`filter orders before the customer became a member;
 * Then, `GROUP BY`customer.
 
-**Answer:**
+**Result:**
 
 | customer_id | total_itens | total_amount |
 |-------------|-------------|--------------|
@@ -257,7 +255,7 @@ WITH points AS
 * Use the `CTE`and create the column points by using the `CASE WHEN`each sushi ordered is equal to 2X10xprice and the other items 10xprice;
 * then, `SUM` the points of each customer.
 
-**Answer:**
+**Result:**
 
 | customer_id | points |
 |-------------|--------|
@@ -310,7 +308,7 @@ GROUP BY pd.customer_id
 * The select `SUM`every point;
 * The customer C is not a member, this is why he's not in the answer.
 
-**Answer:**
+**Result:**
 
 | customer_id | total_points |
 |-------------|--------------|
@@ -342,7 +340,7 @@ LEFT JOIN members mb
 **Comment:**
 * Use the `CASE` statment to attribute the N for non-members and Y for members.
 
-**Answer:**
+**Result:**
 
 | customer_id | order_date | product_name | price | member |
 |-------------|------------|--------------|-------|--------|
@@ -396,7 +394,7 @@ FROM cte
 * Use `CTE` to create the column member, where N is for non-members and Y for members;
 * Then, `RANK`only the orders of the members.
 
-**Answer:**
+**Result:**
 
 | customer_id | order_date | product_name | price | member | ranking |
 |-------------|------------|--------------|-------|--------|---------|
