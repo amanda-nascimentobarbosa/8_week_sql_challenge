@@ -47,7 +47,7 @@ You can inspect the entity relationship diagram and example data below.
 
 <h3>Solution</h3>
   
-**You can view the solution [here](https://github.com/amanda-nascimentobarbosa/8_week_sql_challenge/blob/8394a21745f1a897525523585c4230825be2e6b4/week_1/Solution.md)**
+**You can view the solution [here](https://github.com/amanda-nascimentobarbosa/8_week_sql_challenge/blob/d3938eb986ccfdfe134160b2dd8a49b68c7b57c0/Danny's_Diner/Solution.md)**
 
 Tool used: Microsoft SQL Server
 
