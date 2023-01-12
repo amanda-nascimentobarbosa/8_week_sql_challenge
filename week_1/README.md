@@ -22,7 +22,7 @@ Danny has shared with you 3 key datasets for this case study:
 
 You can inspect the entity relationship diagram and example data below.
 
-![](week_1/folder/2.png)
+![](https://github.com/amanda-nascimentobarbosa/8_week_sql_challenge/blob/8a7a384d3eadb1974fe5a9eeffbb27d4ae8e6310/week_1/image/week_1.2.png)
 
 <h3>Case Study Questions</h3>
   
