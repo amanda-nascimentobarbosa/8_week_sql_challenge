@@ -1,7 +1,7 @@
 ##  Case Study #3 - Foodie-Fi
 
  <p align="center">
-  <img width="300" height="300" src="">
+  <img width="300" height="300" src="https://github.com/amanda-nascimentobarbosa/8_week_sql_challenge/blob/9bf27e76c165beffcd8f16c4042a3a9388a20029/Foodie-Fi/images/week_3.1.png">
 </p>
  
 <h3>Business Case</h3>
@@ -19,7 +19,7 @@ Danny has shared the data design for Foodie-Fi and also short descriptions on ea
 All datasets exist within the foodie_fi database schema - be sure to include this reference within your SQL scripts as you start exploring the data and answering the case study questions.
 
 <p align="center">
-  <img width="750" height="400" src="">
+  <img width="750" height="400" src="https://github.com/amanda-nascimentobarbosa/8_week_sql_challenge/blob/9bf27e76c165beffcd8f16c4042a3a9388a20029/Foodie-Fi/images/week_3.2.png">
 ">
 </p>
 
@@ -27,3 +27,7 @@ All datasets exist within the foodie_fi database schema - be sure to include thi
   
 * A. Customer Journey
 * B. Data Analysis Questions
+* C. Challenge Payment Question
+* D. Outside The Box Questions
+
+
