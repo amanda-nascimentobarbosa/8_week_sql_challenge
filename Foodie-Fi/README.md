@@ -26,7 +26,7 @@ All datasets exist within the foodie_fi database schema - be sure to include thi
 <h3>Case Study Questions</h3>
   
 * A. Customer Journey
-* B. Data Analysis Questions
+* [B. Data Analysis Questions](https://github.com/amanda-nascimentobarbosa/8_week_sql_challenge/blob/main/Foodie-Fi/B.%20Data%20Analysis%20Questions.md)
 * C. Challenge Payment Question
 * D. Outside The Box Questions
 
