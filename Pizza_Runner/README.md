@@ -32,4 +32,4 @@ This case study has LOTS of questions - they are broken up by area of focus, cli
 * [Pizza Metrics](https://github.com/amanda-nascimentobarbosa/8_week_sql_challenge/blob/08e260a5cdf3ecf55189eccd1cbdcac9c82dccbd/Pizza_Runner/A_Pizza_Metrics.md)
 * [Runner and Customer Experience](https://github.com/amanda-nascimentobarbosa/8_week_sql_challenge/blob/08e260a5cdf3ecf55189eccd1cbdcac9c82dccbd/Pizza_Runner/B_Runner_and_Customer_Experience.md)
 * [Ingredient Optimisation](https://github.com/amanda-nascimentobarbosa/8_week_sql_challenge/blob/08e260a5cdf3ecf55189eccd1cbdcac9c82dccbd/Pizza_Runner/C_Ingredient_Optimisation.md)
-* [Pricing and Ratings](https://github.com/amanda-nascimentobarbosa/8_week_sql_challenge/blob/5b2f9371247ca3db7eea252fd8a2d6a9ab461b52/Pizza_Runner/D_Pricing_and_Ratings.md)  
+* [Pricing and Ratings](https://github.com/amanda-nascimentobarbosa/8_week_sql_challenge/blob/main/Pizza_Runner/D_Pricing_and_Ratings.md)  
