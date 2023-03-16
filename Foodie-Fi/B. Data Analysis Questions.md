@@ -102,6 +102,110 @@ WHERE plan_id = 4 AND previous_plan_id = 0
 |-------------------|------------------|
 | 92                | 9                |
 
+**6. What is the number and percentage of customer plans after their initial free trial?**
+```SQL
+WITH cte_next_plan AS(
+SELECT
+	*,
+	LEAD(plan_id, 1) OVER(PARTITION BY customer_id ORDER BY plan_id) AS next_plan_id
+FROM subscriptions
+)
+SELECT
+	next_plan_id,
+	COUNT(*) AS customers,
+	COUNT(*) * 100 / (SELECT COUNT(DISTINCT customer_id) FROM subscriptions) AS next_plan_percentage
+FROM cte_next_plan
+WHERE next_plan_id IS NOT NULL AND plan_id = 0
+GROUP BY next_plan_id
+ORDER BY next_plan_id
+```
+**Result**
+
+| next_plan_id | customers | next_plan_percentage |
+|--------------|-----------|----------------------|
+| 1            | 546       | 54                   |
+| 2            | 325       | 32                   |
+| 3            | 37        | 3                    |
+| 4            | 92        | 9                    |
+
+**7. What is the customer count and percentage breakdown of all 5 plan_name values at 2020-12-31?**
+```SQL
+WITH valid_subscriptions AS (
+SELECT
+	customer_id,
+    s.plan_id,
+	plan_name,
+    start_date,
+    ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY start_date DESC) AS plan_rank
+FROM subscriptions s
+LEFT JOIN plans p
+	ON s.plan_id = p.plan_id
+WHERE start_date <= '2020-12-31'
+)
+SELECT
+	plan_id,
+	plan_name,
+	COUNT(DISTINCT customer_id) AS customers,
+	100.0 * COUNT(*) / SUM(COUNT(*)) OVER() AS percentage
+FROM valid_subscriptions
+WHERE plan_rank = 1
+GROUP BY plan_id, plan_name
+ORDER BY percentage
+```
+**Result**
+
+| plan_id | plan_name     | customers | percentage      |
+|---------|---------------|-----------|-----------------|
+| 0       | trial         | 19        | 1.900000000000  |
+| 3       | pro annual    | 195       | 19.500000000000 |
+| 1       | basic monthly | 224       | 22.400000000000 |
+| 4       | churn         | 236       | 23.600000000000 |
+| 2       | pro monthly   | 326       | 32.600000000000 |
+
+**8. How many customers have upgraded to an annual plan in 2020?**
+```SQL
+SELECT
+	s.plan_id,
+	plan_name,
+	COUNT(customer_id) AS Total_customers
+FROM subscriptions s
+LEFT JOIN plans p
+	ON s.plan_id = p.plan_id
+WHERE DATEPART (YEAR, start_date) = 2020 AND p.plan_id = 3
+GROUP BY s.plan_id, plan_name
+```
+**Result**
+
+| plan_id | plan_name  | Total_customers |
+|---------|------------|-----------------|
+| 3       | pro annual | 195             |
+
+**9. How many days on average does it take for a customer to an annual plan from the day they join Foodie-Fi?**
+```SQL
+WITH trial_plan_customer_cte AS(
+SELECT 
+	*
+FROM subscriptions 
+WHERE plan_id=0
+),
+annual_plan_customer_cte AS (
+SELECT 
+	*
+FROM subscriptions
+WHERE plan_id=3
+)
+SELECT 
+	ROUND(AVG(DATEDIFF(DAY, trial_plan_customer_cte.start_date, annual_plan_customer_cte.start_date)), 2) AS avg_conversion_days
+FROM trial_plan_customer_cte
+INNER JOIN annual_plan_customer_cte
+	ON annual_plan_customer_cte.customer_id = trial_plan_customer_cte.customer_id;
+```
+
+**Result**
+
+| avg_conversion_days |
+|---------------------|
+| 104                 |
 
 
 
