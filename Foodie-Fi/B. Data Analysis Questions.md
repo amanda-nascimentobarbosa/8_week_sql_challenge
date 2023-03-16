@@ -182,103 +182,106 @@ GROUP BY s.plan_id, plan_name
 
 **9. How many days on average does it take for a customer to an annual plan from the day they join Foodie-Fi?**
 ```SQL
-WITH trial_plan_customer_cte AS(
+WITH trial_plan AS(
 SELECT 
 	*
 FROM subscriptions 
 WHERE plan_id=0
 ),
-annual_plan_customer_cte AS (
+annual_plan AS (
 SELECT 
 	*
 FROM subscriptions
 WHERE plan_id=3
 )
 SELECT 
-	ROUND(AVG(DATEDIFF(DAY, trial_plan_customer_cte.start_date, annual_plan_customer_cte.start_date)), 2) AS avg_conversion_days
-FROM trial_plan_customer_cte
-INNER JOIN annual_plan_customer_cte
-	ON annual_plan_customer_cte.customer_id = trial_plan_customer_cte.customer_id;
+	AVG(DATEDIFF(DAY, tp.start_date, ap.start_date)*1.0) AS avg_conversion_days
+FROM trial_plan tp
+INNER JOIN annual_plan ap
+	ON ap.customer_id = tp.customer_id;
 ```
 
 **Result**
 
 | avg_conversion_days |
 |---------------------|
-| 104                 |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+| 104.620155          |
+
+**10. Can you further breakdown this average value into 30 day periods (i.e. 0-30 days, 31-60 days etc)**
+```SQL
+WITH trial_plan AS(
+SELECT 
+	customer_id,
+    start_date AS join_date
+FROM subscriptions 
+WHERE plan_id=0
+),
+annual_plan AS (
+SELECT 
+	customer_id,
+    start_date AS annual_start_date
+FROM subscriptions
+WHERE plan_id=3
+),
+interval AS(
+SELECT
+	tp.customer_id,
+    join_date,
+    annual_start_date,
+    DATEDIFF(DAY, join_date, annual_start_date)/30 + 1 AS interval
+FROM trial_plan tp
+INNER JOIN annual_plan ap
+	ON tp.customer_id = ap.customer_id
+)
+SELECT 
+	CASE 
+		WHEN interval = 1 THEN CONCAT(interval-1, ' - ', interval*30, ' days')
+		ELSE CONCAT((interval-1)*30 + 1, ' - ', interval*30, ' days')
+	END AS period,
+COUNT(customer_id) AS total_customers,
+CAST(AVG(DATEDIFF(DAY, join_date, annual_start_date)*1.0) AS decimal(5, 2)) AS average_days
+FROM interval
+GROUP BY interval;
+```
+
+**Result**
+
+| period         | total_customers | average_days |
+|----------------|-----------------|--------------|
+| 0 - 30 days    | 48              | 9.54         |
+| 31 - 60 days   | 25              | 41.84        |
+| 61 - 90 days   | 33              | 70.88        |
+| 91 - 120 days  | 35              | 99.83        |
+| 121 - 150 days | 43              | 133.05       |
+| 151 - 180 days | 35              | 161.54       |
+| 181 - 210 days | 27              | 190.33       |
+| 211 - 240 days | 4               | 224.25       |
+| 241 - 270 days | 5               | 257.20       |
+| 271 - 300 days | 1               | 285.00       |
+| 301 - 330 days | 1               | 327.00       |
+| 331 - 360 days | 1               | 346.00       |
+
+**11. How many customers downgraded from a pro monthly to a basic monthly plan in 2020?**
+```SQL
+WITH downgraded AS(
+SELECT
+	CASE 
+      WHEN 
+        plan_id = 2  --pro monthly plan 
+        AND
+        LEAD(plan_id) OVER (PARTITION BY customer_id ORDER BY start_date) = 1  --basic monthly plan
+      THEN 1
+      ELSE 0
+    END AS downgraded
+  FROM subscriptions
+)
+SELECT 
+	SUM(downgraded) AS total_downgrads
+FROM downgraded;
+```
+
+**Result**
+
+| total_downgrads |
+|-----------------|
+| 0               |
